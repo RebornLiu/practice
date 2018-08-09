@@ -15,6 +15,7 @@
         <module>Tai</module>
         <module>Base</module>
         <module>rxjava</module>
+        <module>apach</module>
     </modules>
 
 
