@@ -16,6 +16,7 @@
         <module>Base</module>
         <module>rxjava</module>
         <module>apach</module>
+        <module>cache</module>
     </modules>
 
 
