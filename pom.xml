@@ -17,6 +17,7 @@
         <module>rxjava</module>
         <module>apach</module>
         <module>cache</module>
+        <module>thrift</module>
     </modules>
 
 
