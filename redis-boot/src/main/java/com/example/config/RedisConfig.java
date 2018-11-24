@@ -13,8 +13,9 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
-/*    @Bean
-    public RedisTemplate redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+
+    @Bean
+    public RedisTemplate stingRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(RedisSerializer.string());
@@ -23,10 +24,14 @@ public class RedisConfig {
         redisTemplate.setHashValueSerializer(RedisSerializer.string());
         System.out.println("redisTemplate" + redisTemplate.toString());
         return redisTemplate;
-    }*/
+    }
 
+
+    /**
+     * 使用fastJson序列化value
+     * */
     @Bean
-    public RedisTemplate redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
+    public RedisTemplate fastJsonRedisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(RedisSerializer.string());
