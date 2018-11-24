@@ -7,12 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.annotation.Resource;
-import javax.persistence.Table;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,7 +25,7 @@ public class JpaBootApplicationTests {
         student.setStudentId(1111);
         student.setStudentAge(12);
         student.setStudentName("JPA");
-        Student student1 = studentRepository.save(student);
+        studentRepository.save(student);
     }
 
     @Test
@@ -44,4 +40,16 @@ public class JpaBootApplicationTests {
         Assert.assertEquals(student.getStudentId(), 1111);
     }
 
+    @Test
+    public void queryByAge() {
+        Student student = studentRepository.findByAge(12);
+        Assert.assertEquals(student.getStudentId(), 1111);
+    }
+
+    @Test
+    public void update() {
+        studentRepository.updateStudentInfo("JPA", 34);
+        Student student = studentRepository.findById(1).get();
+        Assert.assertEquals(34, student.getStudentAge());
+    }
 }
