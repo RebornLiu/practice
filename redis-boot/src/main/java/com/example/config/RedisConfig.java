@@ -1,5 +1,6 @@
 package com.example.config;
 
+import com.example.bean.Student;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
-    @Bean
+/*    @Bean
     public RedisTemplate redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
@@ -21,6 +22,17 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(RedisSerializer.string());
         redisTemplate.setHashValueSerializer(RedisSerializer.string());
         System.out.println("redisTemplate" + redisTemplate.toString());
+        return redisTemplate;
+    }*/
+
+    @Bean
+    public RedisTemplate redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        redisTemplate.setValueSerializer(new FastJsonSerializer<>(Student.class));
+        redisTemplate.setHashValueSerializer(new FastJsonSerializer<Student>(Student.class));
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
         return redisTemplate;
     }
 
