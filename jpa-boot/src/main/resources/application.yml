@@ -1,0 +1,11 @@
+#DataSourceAutoConfiguration
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url : jdbc:mysql://localhost:3306/reborn
+    username : root
+    password : 123456
+
+#JpaRepositoriesAutoConfiguration
+  jpa:
+    show-sql: true
