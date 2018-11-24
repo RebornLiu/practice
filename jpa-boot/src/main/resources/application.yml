@@ -5,7 +5,21 @@ spring:
     url : jdbc:mysql://localhost:3306/reborn
     username : root
     password : 123456
-
 #JpaRepositoriesAutoConfiguration
   jpa:
     show-sql: true
+---
+#tomcat连接池
+spring:
+  profiles: tomcat
+  datasource:
+    tomcat:
+      max-active: 10
+
+---
+#hikari连接池 看pom依赖 默认是hikari连接池
+spring:
+  profiles: hikari
+  datasource:
+    hikari:
+      maximum-pool-size: 10
