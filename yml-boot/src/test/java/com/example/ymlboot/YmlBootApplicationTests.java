@@ -2,6 +2,7 @@ package com.example.ymlboot;
 
 import com.example.ymlboot.bean.Person;
 import com.example.ymlboot.bean.Student;
+import com.example.ymlboot.bean.Teacher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,9 @@ public class YmlBootApplicationTests {
     @Resource
     private Person person;
 
+    @Resource
+    private Teacher teacher;
+
     @Test
     public void testYmlSelf() {
         System.out.println(student);
@@ -27,6 +31,11 @@ public class YmlBootApplicationTests {
     @Test
     public void testYmlGloble() {
         System.out.println(person);
+    }
+
+    @Test
+    public void testYmlFactory() {
+        System.out.println(teacher);
     }
 
 }
