@@ -18,6 +18,13 @@ public class YmlConfig {
 
     /**
      * @see org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+     *
+     * 这个bean并不能使用@ConfigurationProperties注入的变量，
+     * 因为PropertySourcesPlaceholderConfigurer继承了BeanFactoryPostProcessor
+     * ConfigurationProperties在ConfigurationPropertiesBindingPostProcessor implements BeanPostProcessor
+     * BeanFactoryPostProcessor早于BeanPostProcessor
+     *
+     * PropertySourcesPlaceholderConfigurer本省就是要处理属性注入的 所以不会不应该再依赖属性注入
      * */
     @Bean
     public PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
