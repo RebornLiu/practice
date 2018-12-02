@@ -16,8 +16,8 @@
         <module>Base</module>
         <module>rxjava</module>
         <module>apach</module>
-        <module>cache</module>
         <module>thrift</module>
+        <module>guava</module>
     </modules>
 
 
