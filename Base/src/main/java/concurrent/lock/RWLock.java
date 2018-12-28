@@ -27,7 +27,7 @@ public class RWLock {
         return wLock;
     }
 
-    class RLock implements SelfLock {
+    public class RLock implements SelfLock {
         @Override
         public void lock() throws InterruptedException {
             synchronized (mutex) {
