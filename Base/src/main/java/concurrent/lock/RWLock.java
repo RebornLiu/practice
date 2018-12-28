@@ -1,4 +1,4 @@
-package concurrent;
+package concurrent.lock;
 
 import java.util.HashSet;
 import java.util.Set;

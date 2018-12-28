@@ -1,11 +1,10 @@
 package concurrent;
 
+import concurrent.lock.RetrenLockImpl;
+import concurrent.lock.SelfLock;
 import org.junit.Test;
 
-import java.rmi.AccessException;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.*;
 
 public class LockImplTest {
 

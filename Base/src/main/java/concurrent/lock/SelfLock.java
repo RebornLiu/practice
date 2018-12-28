@@ -1,4 +1,4 @@
-package concurrent;
+package concurrent.lock;
 
 import java.rmi.AccessException;
 import java.util.concurrent.TimeoutException;
