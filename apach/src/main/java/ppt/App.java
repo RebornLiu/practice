@@ -14,11 +14,13 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) {
-        line();
+        zhuzhuangtu();
     }
 
 
-    //饼图
+    /**
+     * 饼图 支持份数的增减
+     */
     private static void pie() {
         String template = "E:\\ppttest\\pie.pptx";
         String result = "E:\\ppttest\\pieresult.pptx";
@@ -32,6 +34,10 @@ public class App {
     }
 
 
+    /**
+     * 折线图
+     * 支持维度的增减
+     * */
     private static void line() {
         String template = "E:\\ppttest\\line.pptx";
         String result = "E:\\ppttest\\lineresult.pptx";
@@ -46,10 +52,13 @@ public class App {
     }
 
 
-    //柱状图
+    /**
+     * 柱状图
+     * 不支持新增图例
+     */
     private static void zhuzhuangtu() {
-        String template = "E:\\2010demo.pptx";
-        String resultFile = "E:\\2010result.pptx";
+        String template = "E:\\ppttest\\2010demo.pptx";
+        String resultFile = "E:\\ppttest\\2010result.pptx";
 
         //页柱状图
         Map<Integer, SlideData> map = new HashMap<>();
@@ -67,7 +76,10 @@ public class App {
     /**
      * 柱状图
      * 可以修改图例的名称 可以修改簇名
+     *
+     * 2016存在兼容问题
      * 插入的文本可以修改 但是不能修改图标自己的标题
+     * 不支持增加横坐标
      * */
      private static List<ChartData> getChartData2() {
         List<ChartCategory> categoryDataList = new ArrayList<>();
@@ -75,10 +87,12 @@ public class App {
         ChartCategory categoryData2 = new ChartCategory("B1", 0.4);
         ChartCategory categoryData3 = new ChartCategory("C1", 0.5);
         ChartCategory categoryData4 = new ChartCategory("D1", 0.6);
+        //ChartCategory categoryData5 = new ChartCategory("E1", 0.6);
         categoryDataList.add(categoryData);
         categoryDataList.add(categoryData2);
         categoryDataList.add(categoryData3);
         categoryDataList.add(categoryData4);
+        //categoryDataList.add(categoryData5);
 
 
         List<ChartCategory> categoryDataList1 = new ArrayList<>();
@@ -86,20 +100,34 @@ public class App {
         ChartCategory categoryData12 = new ChartCategory("B1", 0.4);
         ChartCategory categoryData13 = new ChartCategory("C1", 0.6);
         ChartCategory categoryData14 = new ChartCategory("D1", 0.8);
+       // ChartCategory categoryData15 = new ChartCategory("E1", 0.8);
         categoryDataList1.add(categoryData1);
         categoryDataList1.add(categoryData12);
         categoryDataList1.add(categoryData13);
         categoryDataList1.add(categoryData14);
+        //categoryDataList1.add(categoryData15);
 
         List<ChartCategory> categoryDataList2 = new ArrayList<>();
         ChartCategory categoryData21 = new ChartCategory("A1", 0.3);
         ChartCategory categoryData22 = new ChartCategory("B1", 0.2);
         ChartCategory categoryData23 = new ChartCategory("C1", 0.1);
         ChartCategory categoryData24 = new ChartCategory("D1", 0.8);
+        //ChartCategory categoryData25 = new ChartCategory("E1", 0.8);
         categoryDataList2.add(categoryData21);
         categoryDataList2.add(categoryData22);
         categoryDataList2.add(categoryData23);
         categoryDataList2.add(categoryData24);
+        //categoryDataList2.add(categoryData25);
+
+         List<ChartCategory> categoryDataList3 = new ArrayList<>();
+         ChartCategory categoryData31 = new ChartCategory("A1", 0.3);
+         ChartCategory categoryData32 = new ChartCategory("B1", 0.2);
+         ChartCategory categoryData33 = new ChartCategory("C1", 0.1);
+         ChartCategory categoryData34 = new ChartCategory("D1", 0.8);
+         categoryDataList3.add(categoryData31);
+         categoryDataList3.add(categoryData32);
+         categoryDataList3.add(categoryData33);
+         categoryDataList3.add(categoryData34);
 
 
         List<ChartSeries> seriesDataList = new ArrayList<>();
@@ -115,9 +143,15 @@ public class App {
         seriesData2.setSeriesName("TEST3");
         seriesData2.setChartCategoryList(categoryDataList2);
 
+         ChartSeries seriesData3 = new ChartSeries();
+         seriesData3.setSeriesName("TEST4");
+         seriesData3.setChartCategoryList(categoryDataList3);
+
         seriesDataList.add(seriesData);
         seriesDataList.add(seriesData1);
         seriesDataList.add(seriesData2);
+        seriesDataList.add(seriesData3);
+        //seriesDataList.add(seriesData2);
 
 
         ChartData chartData = new ChartData();
@@ -139,9 +173,13 @@ public class App {
         ChartCategory categoryData = new ChartCategory("2008", 8.2);
         ChartCategory categoryData2 = new ChartCategory("2009", 3.2);
         ChartCategory categoryData3 = new ChartCategory("2010", 2.6);
+       /* ChartCategory categoryData4 = new ChartCategory("2011", 3.6);
+        ChartCategory categoryData5 = new ChartCategory("2012", 4.6);*/
         categoryDataList.add(categoryData);
         categoryDataList.add(categoryData2);
         categoryDataList.add(categoryData3);
+       /* categoryDataList.add(categoryData4);
+        categoryDataList.add(categoryData5);*/
 
         List<ChartSeries> seriesDataList = new ArrayList<>();
         ChartSeries seriesData = new ChartSeries();
@@ -159,27 +197,31 @@ public class App {
 
     private static List<ChartData> getLineData() {
         List<ChartCategory> categoryDataList = new ArrayList<>();
-        ChartCategory categoryData = new ChartCategory("A", 0.123);
-        ChartCategory categoryData2 = new ChartCategory("B", 0.84);
-        ChartCategory categoryData3 = new ChartCategory("C", 0.53);
-        ChartCategory categoryData4 = new ChartCategory("D", 0.262);
+        ChartCategory categoryData = new ChartCategory("1.1", 0.123);
+        ChartCategory categoryData2 = new ChartCategory("2.1", 0.84);
+        ChartCategory categoryData3 = new ChartCategory("3.1", 0.53);
+        ChartCategory categoryData4 = new ChartCategory("4.1", 0.262);
+        ChartCategory categoryData5 = new ChartCategory("5.1", 1.262);
         categoryDataList.add(categoryData);
         categoryDataList.add(categoryData2);
         categoryDataList.add(categoryData3);
         categoryDataList.add(categoryData4);
+        categoryDataList.add(categoryData5);
 
 
         List<ChartCategory> categoryDataList1 = new ArrayList<>();
-        ChartCategory categoryData1 = new ChartCategory("A", 0.93);
-        ChartCategory categoryData12 = new ChartCategory("B", 0.84);
-        ChartCategory categoryData13 = new ChartCategory("C", 0.55);
-        ChartCategory categoryData14 = new ChartCategory("D", 0.181);
+        ChartCategory categoryData1 = new ChartCategory("1.1", 0.93);
+        ChartCategory categoryData12 = new ChartCategory("2.1", 0.84);
+        ChartCategory categoryData13 = new ChartCategory("3.1", 0.55);
+        ChartCategory categoryData14 = new ChartCategory("4.1", 0.181);
+        ChartCategory categoryData15 = new ChartCategory("5.1", 0.56);
         categoryDataList1.add(categoryData1);
         categoryDataList1.add(categoryData12);
         categoryDataList1.add(categoryData13);
         categoryDataList1.add(categoryData14);
+        categoryDataList1.add(categoryData15);
 
-        List<ChartCategory> categoryDataList2 = new ArrayList<>();
+      /*  List<ChartCategory> categoryDataList2 = new ArrayList<>();
         ChartCategory categoryData21 = new ChartCategory("A", 0.51);
         ChartCategory categoryData22 = new ChartCategory("B", 0.71);
         ChartCategory categoryData23 = new ChartCategory("C", 0.558);
@@ -187,7 +229,7 @@ public class App {
         categoryDataList2.add(categoryData21);
         categoryDataList2.add(categoryData22);
         categoryDataList2.add(categoryData23);
-        categoryDataList2.add(categoryData24);
+        categoryDataList2.add(categoryData24);*/
 
 
 
@@ -200,14 +242,14 @@ public class App {
         seriesData1.setSeriesName("test2");
         seriesData1.setChartCategoryList(categoryDataList1);
 
-        ChartSeries seriesData2 = new ChartSeries();
+        /*ChartSeries seriesData2 = new ChartSeries();
         seriesData2.setSeriesName("test3");
-        seriesData2.setChartCategoryList(categoryDataList2);
+        seriesData2.setChartCategoryList(categoryDataList2);*/
 
 
         seriesDataList.add(seriesData);
         seriesDataList.add(seriesData1);
-        seriesDataList.add(seriesData2);
+        //seriesDataList.add(seriesData2);
 
 
         ChartData chartData = new ChartData();
