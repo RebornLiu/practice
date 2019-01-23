@@ -18,6 +18,7 @@
         <module>thrift</module>
         <module>guava</module>
         <module>pdf</module>
+        <module>disruptor</module>
     </modules>
 
 
