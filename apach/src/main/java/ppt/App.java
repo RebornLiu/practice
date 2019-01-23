@@ -14,7 +14,30 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) {
-        zhuzhuangtu();
+        text();
+    }
+
+
+    /**
+     * 文本
+     * */
+    private static void text() {
+        String template = "E:\\ppttest\\text.pptx";
+        String result = "E:\\ppttest\\textresult.pptx";
+
+        SlideData slideData = new SlideData();
+
+        Map<String, String> textes = new HashMap<>();
+        textes.put("text1", "新中关购物中心");
+        textes.put("text2", "周边分析");
+        textes.put("image1", "E:\\ppttest\\page3_img.jpg");
+        textes.put("image2", "E:\\ppttest\\page4_img.jpg");
+        slideData.setTextMap(textes);
+
+
+        Map<Integer, SlideData> pageTable = new HashMap<>();
+        pageTable.put(1, slideData);
+        PowerPointGenerator.generatorPowerPoint(template, result, pageTable);
     }
 
 
