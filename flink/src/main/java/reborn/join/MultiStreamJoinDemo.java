@@ -22,7 +22,15 @@ import java.time.Instant;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-
+/**
+ * 双流join 会取两个流中最小的watermark @see StatusWatermarkValve#findAndOutputNewMinWatermarkAcrossAlignedChannels
+ * 所以如果一个流在时间窗口内没有数据 最小的watermark就是初始值，那么这个窗口是不会触发计算的
+ *
+ * firstStream secondStream 设置了paramlleism 为1 否则默认不是1，
+ * nc手动输入不够快 部分channal是没有数据，会导致最小的watermark处于初始状态无法触发计算
+ *
+ * watermarke的计算周期 @see setStreamTimeCharacteristic
+ * */
 public class MultiStreamJoinDemo {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -33,16 +41,16 @@ public class MultiStreamJoinDemo {
         DataStreamSource<String> second = environment.socketTextStream("localhost", 9998, "\n");
 
         DataStream<Tuple3<Integer, Integer, Integer>> firstStream = first.map(new SplitFunction())
-                .assignTimestampsAndWatermarks(new IncreTimeStampExtractor());
+                .assignTimestampsAndWatermarks(new TimeStampExtractor(Time.seconds(5))).setParallelism(1);
 
         DataStream<Tuple3<Integer, Integer, Integer>> secondStream = second.map(new SplitFunction())
-                .assignTimestampsAndWatermarks(new IncreTimeStampExtractor());
+                .assignTimestampsAndWatermarks(new TimeStampExtractor(Time.seconds(5))).setParallelism(1);
 
         firstStream.coGroup(secondStream)
                 .where(s -> s.f1)
                 .equalTo(s -> s.f0)
                 //处理时间
-                .window(TumblingEventTimeWindows.of(Time.minutes(1)))
+                .window(TumblingEventTimeWindows.of(Time.seconds(30)))
                 //.trigger(EventTimeTrigger.create())
                 //30m+10s内出现一次join结果就触发计算，测试ok
                 //.trigger(CountTrigger.of(1))
