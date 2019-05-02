@@ -26,7 +26,7 @@ import java.util.function.Consumer;
  * 双流join 会取两个流中最小的watermark @see StatusWatermarkValve#findAndOutputNewMinWatermarkAcrossAlignedChannels
  * 所以如果一个流在时间窗口内没有数据 最小的watermark就是初始值，那么这个窗口是不会触发计算的
  *
- * firstStream secondStream 设置了paramlleism 为1 否则默认不是1，
+ * firstStream secondStream 设置了paramlleism 为1 否则默认是 Runtime.getRuntime().availableProcessors() @see getExecutionEnvironment
  * nc手动输入不够快 部分channal是没有数据，会导致最小的watermark处于初始状态无法触发计算
  *
  * watermarke的计算周期 @see setStreamTimeCharacteristic
