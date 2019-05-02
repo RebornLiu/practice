@@ -33,7 +33,12 @@ public class WordCountEventTime {
                     }
                 })
                 /**
-                 * 允许延迟30s+5s 也就是每35s输出一次
+                 * 允许延迟30s+5s 也就是每35s输出一次?
+                 * 每个窗口的大小是5 延迟30s出发计算 假设从时刻0开始
+                 * 第一个窗口结束时间 5s 计算时间35s
+                 * 第二个窗口结束时间 10s 计算时间40s
+                 * 第三个窗口结束时间 15s 计算时间45
+                 * 计算的间隔仍然是5s
                  * */
                 .assignTimestampsAndWatermarks(new MyWaterGenerator())
                 .keyBy(0)
@@ -50,7 +55,7 @@ class MyWaterGenerator implements AssignerWithPeriodicWatermarks<Tuple2<String, 
     @Nullable
     @Override
     public Watermark getCurrentWatermark() {
-        return new Watermark(System.currentTimeMillis() - 20 * 1000);
+        return new Watermark(System.currentTimeMillis() - 30 * 1000);
     }
 
     @Override

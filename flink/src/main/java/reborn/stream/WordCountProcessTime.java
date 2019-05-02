@@ -24,7 +24,7 @@ public class WordCountProcessTime {
                     }
                 })
                 .keyBy(0)
-                .timeWindow(Time.seconds(5))
+                .timeWindow(Time.seconds(10))
                 .sum(1).print();
 
         environment.execute("stream task");
