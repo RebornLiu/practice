@@ -3,12 +3,13 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import field.FieldInfo;
-import field.PageInfo;
-import field.TextField;
+import field.*;
 import font.DefaultFont;
+import org.krysalis.barcode4j.impl.code128.Code128Bean;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import render.RenderRegister;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +102,7 @@ public class PDFUtil {
 
 
     public static void main(String[] args) throws IOException {
-        String template = "C:\\Users\\liuweiliang1\\Desktop\\template2.pdf";
+        String template = "C:\\Users\\liuweiliang1\\Desktop\\template.pdf";
         String save = "C:\\Users\\liuweiliang1\\Desktop\\result.pdf";
 
         PageInfo page1 = new PageInfo();
@@ -113,15 +114,37 @@ public class PDFUtil {
         textField.setFont(DefaultFont.MSYH.getKey());
         textField.setSize(30);
         textField.setColor("#00008b");
+
+        ImageField imageField = new ImageField();
+        imageField.setKey("img1");
+        imageField.setType(ImageResourceType.CUSTOM);
+        imageField.setValue("1234567");
+        imageField.setConverter((value) -> {
+            Code128Bean code128Bean = new Code128Bean();
+            ByteArrayOutputStream ous = new ByteArrayOutputStream();
+            // 输出到流
+            BitmapCanvasProvider canvas = new BitmapCanvasProvider(ous, "image/png", 200,
+                    BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+            code128Bean.generateBarcode(canvas, value);
+            try {
+                canvas.finish();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return ous.toByteArray();
+        });
         List<FieldInfo> fieldInfos = new ArrayList<>(2);
         fieldInfos.add(textField);
+        fieldInfos.add(imageField);
         page1.setFieldInfos(fieldInfos);
 
 
         PageInfo page2 = new PageInfo();
         page2.setPageNumber(2);
         TextField textField2 = new TextField();
-        textField2.setKey("test1");
+        textField2.setKey("test2");
         textField2.setValue("这个是测试2的text2");
         List<FieldInfo> fieldInfos1 = new ArrayList<>(2);
         fieldInfos1.add(textField2);
