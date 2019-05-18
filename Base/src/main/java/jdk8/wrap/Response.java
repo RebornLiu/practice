@@ -1,5 +1,6 @@
 package jdk8.wrap;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Response<T> {
@@ -10,14 +11,34 @@ public class Response<T> {
 
 
     /**
-     * 顺序调用 如果中间出现false 则最终返回第一个false
+     * 处理成功时的result字段 如果时false 直接跳过返回当前的Response
      * */
     @SuppressWarnings("unchecked")
-    public <E> Response<E> withHandler(Function<Response<T>, Response<E>> function) {
+    public <E> Response<E> handleSuccess(Function<T, Response<E>> function) {
         if (!this.isSuccess()) {
             return (Response<E>) this;
         }
+        return function.apply(this.getResult());
+    }
+
+
+    /**
+     * 处理response
+     * */
+    public <E> Response<E> handleResp(Function<Response<T>, Response<E>> function) {
         return function.apply(this);
+    }
+
+
+    /**
+     * 处理 错误返回当前的response
+     * */
+    public Response<T> handleFail(Consumer<Response<T>> consumer) {
+        if (!this.isSuccess()) {
+            consumer.accept(this);
+        }
+
+        return this;
     }
 
 

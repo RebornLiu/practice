@@ -5,20 +5,25 @@ public class Main {
         Response<String> response = new Response<>();
         response.setSuccess(true);
         response.setMsg("error");
-        Response response1 = response.withHandler(r -> {
+        Response response1 = response.handleResp(r -> {
             Response<Integer> iR = new Response<>();
             iR.setResult(1);
-            iR.setSuccess(false);
+            iR.setSuccess(true);
             return iR;
-        }).withHandler(r -> {
+        }).handleResp(r -> {
             Response<String> sR = new Response<>();
-            sR.setSuccess(true);
+            sR.setSuccess(false);
             sR.setResult("this is string");
             return sR;
-        });
+        }).handleSuccess(str -> {
+            Response<String> sR = new Response<>();
+            sR.setSuccess(true);
+            sR.setResult("this is string" + str);
+            return sR;
+        }).handleFail(r -> System.out.println(r.toString()));
 
 
-        System.out.println(response1);
+       // System.out.println(response1);
     }
 
 }
