@@ -1,0 +1,16 @@
+package com.example.yaml.annotation;
+
+
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.stereotype.Component;
+
+import java.lang.annotation.*;
+
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface MyService {
+    @AliasFor(value="value", annotation = Component.class)
+    String name() default "";
+}
