@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: product
+
+global :
+  cities :
+    - beijing
+    - shanghai
+  country : china
+  people :
+    han : 汉族
+    man : 满族
+
+---
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: product

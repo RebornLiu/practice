@@ -18,6 +18,8 @@
         <module>thrift</module>
         <module>guava</module>
         <module>disruptor</module>
+        <module>validator</module>
+        <module>spark</module>
     </modules>
 
 
