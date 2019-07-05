@@ -20,6 +20,8 @@
         <module>disruptor</module>
         <module>validator</module>
         <module>spark</module>
+        <module>com.reborn.plugin</module>
+        <module>com.reborn.test</module>
     </modules>
 
 

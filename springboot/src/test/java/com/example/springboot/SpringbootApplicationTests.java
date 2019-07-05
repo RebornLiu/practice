@@ -1,5 +1,7 @@
 package com.example.springboot;
 
+import com.example.autoware.Container;
+import com.example.autoware.IDemo;
 import com.example.multidatasource.defaultMapper.CustomOrderMapper;
 import com.example.multidatasource.slaveMapper.PopCustomOrderMapper;
 import com.example.selfCache.Demo;
@@ -28,6 +30,9 @@ public class SpringbootApplicationTests {
     @Resource
     private Demo demo;
 
+    @Resource
+    private Container container;
+
     @Test
     public void contextLoads() {
 
@@ -46,6 +51,11 @@ public class SpringbootApplicationTests {
     @Test
     public void testCache() {
         demo.echo("hello");
+    }
+
+    @Test
+    public void testAutoWare() {
+        container.getIDemoList().forEach(IDemo::echo);
     }
 
 }
