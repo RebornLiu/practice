@@ -2,6 +2,7 @@ package com.example.springboot;
 
 import com.example.multidatasource.defaultMapper.CustomOrderMapper;
 import com.example.multidatasource.slaveMapper.PopCustomOrderMapper;
+import com.example.selfCache.Demo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class SpringbootApplicationTests {
     @Resource
     private PopCustomOrderMapper popCustomOrderMapper;
 
+    @Resource
+    private Demo demo;
+
     @Test
     public void contextLoads() {
 
@@ -37,6 +41,11 @@ public class SpringbootApplicationTests {
 
         System.out.println(count1);
         System.out.println(count2);
+    }
+
+    @Test
+    public void testCache() {
+        demo.echo("hello");
     }
 
 }

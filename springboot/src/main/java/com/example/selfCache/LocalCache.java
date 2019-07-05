@@ -1,57 +1,60 @@
 package com.example.selfCache;
 
 import org.springframework.cache.Cache;
+import org.springframework.cache.support.SimpleValueWrapper;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class LocalCache implements Cache {
 
+    private static ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+
     @Override
     public String getName() {
-        return "localCache";
+        return "self-cache";
     }
 
     @Override
     public Object getNativeCache() {
-        return null;
+        return map;
     }
 
     @Override
     public ValueWrapper get(Object o) {
-        System.out.println("localCache get");
-        return null;
+        return new SimpleValueWrapper(map.get(o));
     }
 
     @Override
     public <T> T get(Object o, Class<T> aClass) {
-        System.out.println("local cahce get");
-        return null;
+        return aClass.cast(map.get(o));
     }
 
     @Override
     public <T> T get(Object o, Callable<T> callable) {
-        System.out.println("local cache get");
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void put(Object o, Object o1) {
-        System.out.println("local cahe put");
+        System.out.println("put method");
+        map.put(o, o1);
     }
 
     @Override
     public ValueWrapper putIfAbsent(Object o, Object o1) {
-        System.out.println("local cache puifAbsent");
-        return null;
+        System.out.println("putIfAbsent method");
+        Object old = map.putIfAbsent(o, o1);
+        return new SimpleValueWrapper(old);
     }
 
     @Override
     public void evict(Object o) {
-
+        map.remove(o);
     }
 
     @Override
     public void clear() {
-
+        map.clear();
     }
 }
