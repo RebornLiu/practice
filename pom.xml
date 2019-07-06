@@ -22,6 +22,7 @@
         <module>spark</module>
         <module>com.reborn.plugin</module>
         <module>com.reborn.test</module>
+        <module>parse</module>
     </modules>
 
 
