@@ -11,9 +11,23 @@
 
     <artifactId>com.reborn.test</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>yip-spider-man</groupId>
+            <artifactId>base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>maven-gateway-plugin</artifactId>
+            <groupId>yip-spider-man</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
-            <plugin>
+           <!-- <plugin>
                 <artifactId>hello-maven-plugin</artifactId>
                 <groupId>reborn</groupId>
                 <version>1.0-SNAPSHOT</version>
@@ -31,6 +45,30 @@
                         <param>first</param>
                         <param>second</param>
                     </multi>
+                </configuration>
+            </plugin>-->
+            <plugin>
+                <artifactId>maven-gateway-plugin</artifactId>
+                <groupId>yip-spider-man</groupId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>document</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <dest>123</dest>
+                    <applications>
+                        <param>
+                            <appCode>test1</appCode>
+                        </param>
+                        <param>
+                            <appCode>test2</appCode>
+                        </param>
+                    </applications>
                 </configuration>
             </plugin>
         </plugins>

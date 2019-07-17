@@ -31,5 +31,11 @@
             <artifactId>cglib</artifactId>
             <version>3.2.12</version>
         </dependency>
+
+        <dependency>
+            <groupId>jackson-all</groupId>
+            <artifactId>jackson-all</artifactId>
+            <version>2.0.1</version>
+        </dependency>
     </dependencies>
 </project>
