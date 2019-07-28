@@ -6,6 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import java.util.List;
 
@@ -33,11 +34,24 @@ public class HelloPlugin extends AbstractMojo {
     @Parameter
     private List<String> multi;
 
+    @Parameter(defaultValue = "${project}")
+    private MavenProject project;
+
+    @Parameter( property = "maven.source.classifier", defaultValue = "sources" )
+    private String classifier;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("this is reborn hello");
         getLog().info("parameter:" + sigle);
         getLog().info("parameters:" + JSON.toJSONString(multi));
+
+        getLog().info("project:-----");
+        getLog().info(JSON.toJSONString(project));
+        getLog().info("project:-----");
+
+        getLog().info("classifier:" + classifier);
+
 
     }
 }

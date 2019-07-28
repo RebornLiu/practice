@@ -5,6 +5,8 @@ import com.example.autoware.IDemo;
 import com.example.multidatasource.defaultMapper.CustomOrderMapper;
 import com.example.multidatasource.slaveMapper.PopCustomOrderMapper;
 import com.example.selfCache.Demo;
+import com.example.staticdi.Parent;
+import org.hibernate.validator.constraints.Range;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,14 @@ public class SpringbootApplicationTests {
 
     @Resource
     private Container container;
+
+    @Resource
+    private Parent parent;
+
+    @Test
+    public void testPostConstruct() {
+        parent.echo();
+    }
 
     @Test
     public void contextLoads() {
