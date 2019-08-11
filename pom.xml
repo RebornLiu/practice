@@ -23,6 +23,7 @@
         <module>com.reborn.plugin</module>
         <module>com.reborn.test</module>
         <module>parse</module>
+        <module>json</module>
     </modules>
 
 
