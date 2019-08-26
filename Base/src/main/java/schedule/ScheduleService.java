@@ -8,10 +8,13 @@ public class ScheduleService {
 
     public static void main(String[] args) throws InterruptedException {
         /**
-         * ScheduledThreadPoolExecutor 构造函数设置的最大线程数量是Integer.MAX （只能设置coreSize）
-         * 这样可以避免因为线程资源的竞争导致的延迟 影响任务设置的延迟时间
+         * ScheduledThreadPoolExecutor 使用的队列是DelayedWorkQueue这是一个无界队列，
+         * 当任务大于coreSize时线程池是先放队列再生成新的线程 因为永远不会有大于coreSize的线程
          *
-         * 各个任务之间是没有影响的
+         * 因此ScheduledThreadPoolExecutor无法保证实时，因此任务多时执行线程可能不够用
+         * 比如java.util.concurrent.Executors#newSingleThreadScheduledExecutor()只有一个线程，那么就是顺序执行所有任务
+         *
+         * 所以使用ScheduledThreadPoolExecutor时要注意coreSize的大小
          * */
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(5);
         //固定频率执行 如果中间有任务异常 则停止执行该系列后续的任务（不会影响其它的任务）
@@ -27,7 +30,7 @@ public class ScheduleService {
 
                 }
 
-                    //throw new RuntimeException("323");
+                    throw new RuntimeException("323");
 
             }
         }, 0, 1, TimeUnit.SECONDS);
