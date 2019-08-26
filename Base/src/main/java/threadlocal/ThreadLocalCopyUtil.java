@@ -40,6 +40,20 @@ public class ThreadLocalCopyUtil {
         threadLocals.set(current, object);
     }
 
+    //设置为空
+    public static void resetNull() {
+        Thread current = Thread.currentThread();
+        try {
+            Field threadLocals = Thread.class.getDeclaredField("threadLocals");
+            threadLocals.setAccessible(true);
+            threadLocals.set(current, null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) throws InterruptedException {
         intLocal.set(1);
         strLocal.set("2");
@@ -89,6 +103,9 @@ class DecoratorRunnable implements Runnable {
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            ThreadLocalCopyUtil.resetNull();
         }
     }
 }
