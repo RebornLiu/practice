@@ -32,7 +32,7 @@ public class GenerateParenthesis {
     public static void main(String[] args) {
         GenerateParenthesis generateParenthesis = new GenerateParenthesis();
         List<String> list = generateParenthesis.generateParenthesis(1);
-        System.out.println(JSON);
+        //System.out.println(JSON);
     }
 
 }
