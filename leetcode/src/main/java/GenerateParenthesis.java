@@ -1,3 +1,5 @@
+import com.alibaba.fastjson.JSON;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +18,7 @@ public class GenerateParenthesis {
             for (String p : pre) {
                 int pLen = p.length();
                 for (int j = 0; j < pLen; j ++) {
-                    cur.add(p.substring(0,j) + "()" + p.substring(j + 1, pLen));
+                    cur.add(p.substring(0,j + 1) + "()" + p.substring(j + 1, pLen));
                 }
             }
 
@@ -31,8 +33,8 @@ public class GenerateParenthesis {
 
     public static void main(String[] args) {
         GenerateParenthesis generateParenthesis = new GenerateParenthesis();
-        List<String> list = generateParenthesis.generateParenthesis(1);
-        //System.out.println(JSON);
+        List<String> list = generateParenthesis.generateParenthesis(3);
+        System.out.println(JSON.toJSONString(list));
     }
 
 }
