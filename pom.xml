@@ -23,6 +23,8 @@
         <module>com.reborn.plugin</module>
         <module>com.reborn.test</module>
         <module>parse</module>
+        <module>kafka-demo</module>
+        <module>com.reborn.demo</module>
     </modules>
 
 

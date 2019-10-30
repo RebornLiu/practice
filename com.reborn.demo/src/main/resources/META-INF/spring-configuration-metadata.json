@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "Hello",
+      "type": "com.demo.service.HelloProperties",
+      "sourceType": "com.demo.service.HelloProperties"
+    }
+  ],
+  "properties": [
+  {
+    "name": "hello.message",
+    "type": "java.lang.String",
+    "description": "数量",
+    "sourceType": "com.demo.service.HelloProperties"
+  },
+  {
+    "name": "hello.numbers",
+    "type": "java.util.List",
+    "description": "数量",
+    "sourceType": "com.demo.service.HelloProperties"
+  }]
+}
