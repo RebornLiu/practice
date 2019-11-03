@@ -25,6 +25,7 @@
         <module>parse</module>
         <module>kafka-demo</module>
         <module>com.reborn.demo</module>
+        <module>hbase-demo</module>
     </modules>
 
 
