@@ -70,10 +70,10 @@ class HystrixArchaiusHelper {
      */
     static HystrixDynamicProperties createArchaiusDynamicProperties() {
         if (isArchaiusV1Available()) {
-            loadCascadedPropertiesFromResources("com.netflix.hystrix-plugins");
+            loadCascadedPropertiesFromResources("hystrix-plugins");
             try {
                 Class<?> defaultProperties = Class.forName(
-                        "com.netflix.com.netflix.hystrix.strategy.properties.archaius" + ".HystrixDynamicPropertiesArchaius");
+                        "com.netflix.hystrix.strategy.properties.archaius" + ".HystrixDynamicPropertiesArchaius");
                 return (HystrixDynamicProperties) defaultProperties.newInstance();
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
