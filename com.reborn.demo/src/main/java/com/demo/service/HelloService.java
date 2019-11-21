@@ -1,7 +1,10 @@
 package com.demo.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class HelloService {
     private String msg;
     private List<Integer> numbers;

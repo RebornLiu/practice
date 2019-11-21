@@ -1,4 +1,4 @@
-package com.reborn.hbase;
+package hbase;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;

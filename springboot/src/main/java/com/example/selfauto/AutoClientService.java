@@ -8,11 +8,11 @@ import javax.annotation.Resource;
 
 @Service
 public class AutoClientService {
-
+/*
     @Resource
-    private HelloService helloService;
+    private HelloService helloService;*/
 
     public void hello() {
-        helloService.echo();
+        //helloService.echo();
     }
 }

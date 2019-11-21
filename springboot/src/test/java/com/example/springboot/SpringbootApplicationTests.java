@@ -1,12 +1,13 @@
 package com.example.springboot;
 
+import com.alibaba.fastjson.JSON;
 import com.example.autoware.Container;
 import com.example.autoware.IDemo;
+import com.example.hbase.HbaseDao;
 import com.example.multidatasource.defaultMapper.CustomOrderMapper;
 import com.example.multidatasource.slaveMapper.PopCustomOrderMapper;
 import com.example.selfCache.Demo;
 import com.example.staticdi.Parent;
-import org.hibernate.validator.constraints.Range;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,6 +39,15 @@ public class SpringbootApplicationTests {
 
     @Resource
     private Parent parent;
+
+    @Resource
+    private HbaseDao hbaseDao;
+
+    @Test
+    public void testHbaseGet() {
+        List<String> list = hbaseDao.getCellVal("rowkey1");
+        System.out.println(JSON.toJSONString(list));
+    }
 
     @Test
     public void testPostConstruct() {
